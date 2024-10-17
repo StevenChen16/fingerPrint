@@ -2,6 +2,8 @@ package run.halo.fingerprint;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import java.io.IOException;
 @Component
 public class FingerprintFilter extends OncePerRequestFilter {
 
+    private static final Logger logger = LoggerFactory.getLogger(FingerprintFilter.class);
     private final FingerprintRepository fingerprintRepository;
 
     public FingerprintFilter(FingerprintRepository fingerprintRepository) {
@@ -24,6 +27,8 @@ public class FingerprintFilter extends OncePerRequestFilter {
         if (isUserLoggedIn(request)) {
             // Extract the browser fingerprint
             String fingerprint = extractFingerprint(request);
+            // Log the fingerprint
+            logger.info("Visitor fingerprint: {}", fingerprint);
             // Save the fingerprint to the database
             saveFingerprint(fingerprint);
         }
