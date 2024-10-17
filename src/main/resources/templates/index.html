@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Fingerprint Logger</title>
+</head>
+<body>
+    <h1>Browser Fingerprint Logger</h1>
+    <p>Visitor ID: <span id="visitorId">Loading...</span></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3"></script>
+    <script>
+        // Initialize FingerprintJS
+        const fpPromise = FingerprintJS.load();
+
+        fpPromise
+            .then(fp => fp.get())
+            .then(result => {
+                const visitorId = result.visitorId;
+                document.getElementById('visitorId').textContent = visitorId;
+
+                // Send the visitorId to the backend
+                fetch('/api/plugins/fingerprint', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ visitorId: visitorId })
+                }).then(response => {
+                    if (!response.ok) {
+                        console.error('Failed to log fingerprint');
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
