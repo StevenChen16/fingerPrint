@@ -31,16 +31,8 @@ interface FingerprintRepository {
 }
 
 @RestController
-@RequestMapping("/api/plugins/fingerprint")
 public class FingerprintController {
 
     @Autowired
     private FingerprintRepository repository;
-
-    @PostMapping
-    public ResponseEntity<String> logFingerprint(@RequestBody FingerprintData data) {
-        // Save fingerprint data
-        repository.save(data);
-        return ResponseEntity.ok("Fingerprint logged successfully.");
-    }
 }

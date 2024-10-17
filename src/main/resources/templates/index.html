@@ -19,19 +19,6 @@
             .then(result => {
                 const visitorId = result.visitorId;
                 document.getElementById('visitorId').textContent = visitorId;
-
-                // Send the visitorId to the backend
-                fetch('/api/plugins/fingerprint', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ visitorId: visitorId })
-                }).then(response => {
-                    if (!response.ok) {
-                        console.error('Failed to log fingerprint');
-                    }
-                });
             });
     </script>
 </body>

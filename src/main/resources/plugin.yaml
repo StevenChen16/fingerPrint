@@ -16,7 +16,7 @@ spec:
   repo: https://github.com/StevenChen16/fingerPrint.git
   issues: https://github.com/StevenChen16/fingerPrint/issues
   displayName: "fingerprint 浏览器指纹"
-  description: "基于fingerprintJS搭建的浏览器指纹识别应用"
+  description: "基于fingerprintJS搭建的浏览器指纹识别应用。插件自动监听所有的url，并且每当用户在登录的状态下访问，那么用户访问时的浏览器指纹会被自动记录在数据库中。"
   license:
     - name: "GPL-3.0"
       url: "https://github.com/halo-dev/plugin-starter/blob/main/LICENSE"

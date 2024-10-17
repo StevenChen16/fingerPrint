@@ -15,6 +15,13 @@ public class FingerprintRepositoryImpl implements FingerprintRepository {
         System.out.println("Fingerprint saved: " + data.getVisitorId() + " at " + data.getTimestamp());
     }
 
+    @Override
+    public void saveFingerprintForUser(String userId, String fingerprint) {
+        // Implement logic to save the fingerprint for a user
+        // This can be done by updating the user's record in the database
+        System.out.println("Fingerprint saved for user: " + userId + " with fingerprint: " + fingerprint);
+    }
+
     public List<FingerprintData> getAll() {
         return fingerprints;
     }
